@@ -32,6 +32,11 @@ class Manifold():
         container = self.dock.inspect_container(container=cont_id)
         return Minion(self, container)
 
+    def rows(self, trunc=True, all=False):
+        minions = self.minions(trunc=trunc, all=all)
+        rows = BranchRow.rows_from_minions(minions)
+        return rows
+
     def minions(self, trunc=True, all=False):
         containers = self.containers(trunc=trunc, all=all)
         return [Minion(self, container) for container in containers]
@@ -61,6 +66,34 @@ class Manifold():
     @property
     def nginx_server_name(self):
         return r'~^{}\..*$'.format(self.subdomain)
+
+
+class BranchRow():
+
+    @classmethod
+    def rows_from_minions(cls, minions, max_cell=4):
+        # group by branch
+        rows = []
+        row = []
+        to_group = minions[:]
+        while to_group:
+            minion = to_group.pop()
+            row.append(minion)
+            # Simulate several rows with a max-length (only for test) The real
+            # implementation will have to group by the docker label 'branch'
+            # (or pull-request?) and discard containers above max_cell
+            if len(row) == max_cell:
+                rows.append(BranchRow(row))
+                row = []
+        if row:  # remaining
+            rows.append(BranchRow(row))
+        return rows
+
+    def __init__(self, minions):
+        self.minions = minions
+        self.name = '#1'  # name of the branch
+        self.link = ''  # link to the branch
+        # later, one cell of a row will be a composition
 
 
 class Composition():

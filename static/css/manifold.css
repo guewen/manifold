@@ -5,6 +5,7 @@
 .card-composition > .mdl-card__title {
   align-items: flex-start;
   background: #009688;
+  color: #fff;
 }
 .card-composition > .mdl-card__title > h6 {
   margin-top: 0;
@@ -14,11 +15,35 @@
   box-sizing:border-box;
   align-items: center;
 }
-.card-composition > .mdl-card__title {
-  color: #fff;
-}
 
 .card-composition > .mdl-card__actions .mdl-button {
+  min-width: 40px;
+  padding: 0 8px;
+}
+
+.card-row.mdl-card {
+  width: 128px;
+  height: 128px;
+}
+.card-row > .mdl-card__title {
+  align-items: flex-start;
+  background: #009688;
+  color: #fff;
+}
+.card-row > .mdl-card__supporting-text {
+  background: #009688;
+  color: #fff;
+}
+.card-row > .mdl-card__title > h6 {
+  margin-top: 0;
+}
+.card-row > .mdl-card__actions {
+  display: flex;
+  box-sizing:border-box;
+  align-items: center;
+}
+
+.card-row > .mdl-card__actions .mdl-button {
   min-width: 40px;
   padding: 0 8px;
 }

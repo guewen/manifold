@@ -21,14 +21,14 @@ manifold.nginx_write_and_reload()
 
 @app.route('/all')
 def all_containers():
-    minions = manifold.minions(trunc=True, all=True)
-    return render_template('containers.html', minions=minions)
+    rows = manifold.rows(trunc=True, all=True)
+    return render_template('containers.html', rows=rows)
 
 
 @app.route('/')
 def containers():
-    minions = manifold.minions(trunc=True)
-    return render_template('containers.html', minions=minions)
+    rows = manifold.rows(trunc=True)
+    return render_template('containers.html', rows=rows)
 
 
 @app.route('/container/<cont_id>/start')
