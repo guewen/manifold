@@ -104,7 +104,9 @@ class Minion():
     # several minion in one 'docker-compose'
     @property
     def port(self):
-        return '8069'
+        # FIXME: step 1, change to 8069 for Odoo
+        # FIXME: step 2, get the port from docker-compose (or consul?)
+        return '5000'
 
     @property
     def ip(self):
